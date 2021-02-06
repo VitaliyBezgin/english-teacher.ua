@@ -2,17 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Friend;
+use App\Models\Level;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class FriendFactory extends Factory
+class LevelFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Friend::class;
+    protected $model = Level::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +23,9 @@ class FriendFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id' => User::factory()->create(),
+            'level' => rand(1,10),
+            'points' => rand(0, 10000)
         ];
     }
 }

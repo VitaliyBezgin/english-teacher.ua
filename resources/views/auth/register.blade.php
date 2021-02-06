@@ -9,28 +9,49 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
             @csrf
 
-            <!-- Name -->
+            <!-- fname -->
             <div>
-                <x-label for="name" :value="__('Name')" />
+                <label for="fname">First name</label>
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <input id="fname" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" name="fname" value="{{old('fname')}}" required autofocus />
+            </div>
+
+            <!-- sname -->
+            <div>
+                <label for="sname">Last name</label>
+
+                <input id="sname" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" name="sname" value="{{old('sname')}}" required autofocus />
+            </div>
+
+            <!-- phone -->
+            <div>
+                <label for="phone">Phone number</label>
+
+                <input id="phone" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="tel" name="phone" value="{{old('phone')}}" required autofocus />
             </div>
 
             <!-- Email Address -->
             <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
+                <label for="email">Email</label>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <input id="email" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="email" name="email" value="{{old('email')}}" required />
+            </div>
+
+            <!-- Email Address -->
+            <div class="mt-4">
+                <label for="photo">Photo file</label>
+
+                <input id="photo" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="file" name="photo" />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <label for="password">Password</label>
 
-                <x-input id="password" class="block mt-1 w-full"
+                <input id="password" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                 type="password"
                                 name="password"
                                 required autocomplete="new-password" />
@@ -38,9 +59,9 @@
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+                <label for="password_confirmation">Confirm password </label>
 
-                <x-input id="password_confirmation" class="block mt-1 w-full"
+                <input id="password_confirmation" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                 type="password"
                                 name="password_confirmation" required />
             </div>

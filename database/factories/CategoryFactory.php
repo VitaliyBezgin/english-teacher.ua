@@ -21,8 +21,11 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
+        $type = ['for theory', 'for words'];
+
         return [
-            //
+            'category_title' => $this->faker->unique()->jobTitle,
+            'category_type' => $type[rand(0,1)]
         ];
     }
 }

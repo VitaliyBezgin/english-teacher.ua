@@ -9,11 +9,21 @@ class Theory extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'category_id',
+        'theory_title',
+        'header',
+        'theory_video',
+        'theory_body',
+        'created_at',
+        'updated_at'
+    ];
+
     protected $table = "theories";
 
     public function category()
     {
-        return $this->hasOne(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function practices()
