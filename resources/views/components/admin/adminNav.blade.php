@@ -1,6 +1,20 @@
-<ul>
-    <li> <a href="{{url('theory/create')}}" class="btn btn-success">create theory</a></li>
-</ul>
+<div>
+    <h4>Theory</h4>
+    <ul>
+        <li>
+            <a href="{{url('theory')}}">all theory</a>
+        </li>
+        <li>
+            <a href="{{url('theory/create')}}">theory create</a>
+        </li>
+    </ul>
+    <hr>
+    <h4>Words</h4>
+    <ul>
+        <li><a href="{{url('words')}}">all words</a></li>
+        <li><a href="{{url('words/create')}}">words list create</a></li>
+    </ul>
+</div>
 
 <div class="messages">
     @if(session('message'))

@@ -11,13 +11,26 @@ class Words extends Model
 
     protected $table = "words";
 
+    protected $fillable = [
+        'words_title',
+        'category_id',
+        'words',
+        'created_at',
+        'updated_at'
+    ];
+
     public function category()
     {
-        return $this->hasOne(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function file()
     {
         return $this->morphOne(Files::class, 'fileable');
+    }
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageables');
     }
 }

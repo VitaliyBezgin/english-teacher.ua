@@ -6,6 +6,7 @@ use App\Events\NewTheory;
 use App\Notifications\NotifyClient;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 
 class NewTheoryCreatedListener
@@ -30,7 +31,11 @@ class NewTheoryCreatedListener
     public function handle(NewTheory $event)
     {
         foreach ($event->users as $user){
-            Notification::send($user, new NotifyClient($user, $event->theory));
+            try{
+                Notification::send($user, new NotifyClient($user, $event->theory));
+            }catch (\Exception $e){
+                Log::info($e->getMessage());
+            }
         }
     }
 }

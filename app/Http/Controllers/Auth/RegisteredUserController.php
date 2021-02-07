@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Image;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class RegisteredUserController extends Controller
 {
@@ -45,10 +48,28 @@ class RegisteredUserController extends Controller
             'fname' => $request->fname,
             'sname' => $request->sname,
             'phone' => $request->phone,
-            'photo' => (!empty($request->photo)) ? $request->file('photo')->getClientOriginalName() : null,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]));
+
+        if(!empty($request->file('photo'))){
+            try {
+                Image::create([
+                    'imageables_id' => $user->id,
+                    'imageables_type' => User::class,
+                    'image' => $request->file('photo')->getClientOriginalName()
+                ]);
+
+                $photo = $request->file('photo')->getClientOriginalName();
+
+                $path = $request->file('photo')->storeAs(
+                    'public/avatars', $photo
+                );
+
+            }catch (\Exception $exception){
+                Log::info($exception->getMessage());
+            }
+        }
 
         event(new Registered($user));
 

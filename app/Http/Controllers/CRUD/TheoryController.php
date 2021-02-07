@@ -5,6 +5,7 @@ namespace App\Http\Controllers\CRUD;
 use App\Events\NewTheory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTheoryRequest;
+use App\Jobs\NotifyAfterNewTheory;
 use App\Models\Theory;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -43,8 +44,6 @@ class TheoryController extends Controller
      */
     public function store(StoreTheoryRequest $request)
     {
-        $validated = $request->validated();
-
         $newTheory = new Theory();
         try {
             $newTheory->fill([
@@ -56,10 +55,13 @@ class TheoryController extends Controller
             ]);
            $res = $newTheory->save();
 
-           if ($res == true){
-               $users= User::all();
-               event(new NewTheory($users, $newTheory));
-           }
+           /*
+            * Start notify users
+            * */
+//           if ($res == true){
+//               $users= User::all();
+//               NotifyAfterNewTheory::dispatch($users, $newTheory)->delay(now()->addMinutes(2));
+//           }
 
         }catch (\Exception $exception){
             return redirect()->back()->with('message', [

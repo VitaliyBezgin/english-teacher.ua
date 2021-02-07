@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\NewTheory;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -18,9 +19,11 @@ class NotifyAfterNewTheory implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public $users, $theory;
+    public function __construct($users, $theory)
     {
-        //
+        $this->users = $users;
+        $this->theory = $theory;
     }
 
     /**
@@ -30,6 +33,6 @@ class NotifyAfterNewTheory implements ShouldQueue
      */
     public function handle()
     {
-        //
+        event(new NewTheory($this->users, $this->theory));
     }
 }
