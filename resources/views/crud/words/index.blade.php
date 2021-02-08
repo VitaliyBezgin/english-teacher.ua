@@ -2,10 +2,12 @@
     <div class="container">
         @foreach ($words as $word)
             {{ $word->words_title }}
-            <img src="{{asset('storage/word_images/'.$word->image->image)}}" alt="">
-            <ol>
+            @if(isset($word->image->image))
+                <img src="{{asset('storage/word_images/'.$word->image->image)}}" alt="">
+            @endif
+            <ul>
                 <li>{{$word->category->category_title}}</li>
-            </ol>
+            </ul>
         @endforeach
     </div>
 

@@ -9,6 +9,7 @@ use App\Jobs\NotifyAfterNewTheory;
 use App\Models\Theory;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class TheoryController extends Controller
 {
@@ -64,6 +65,7 @@ class TheoryController extends Controller
 //           }
 
         }catch (\Exception $exception){
+            Log::info($exception->getMessage());
             return redirect()->back()->with('message', [
                 'status' => 'error',
                 'text' => $exception->getMessage()

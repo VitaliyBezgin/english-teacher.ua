@@ -32,8 +32,6 @@ class WordController extends Controller
      */
     public function create()
     {
-        $words = "кот=cat|1;собака=dog|2;автомобиль=car|3;девушка=girl|4;";
-
         $categories = Category::where('category_type', 'for words')->get();
 
         return view('crud.words.create', ['categories' => $categories]);
@@ -47,6 +45,8 @@ class WordController extends Controller
      */
     public function store(WordList $request)
     {
+//        example words = "кот=cat|1;собака=dog|2;автомобиль=car|3;девушка=girl|4;";
+
         $words = new Words();
 
         try {
@@ -66,23 +66,20 @@ class WordController extends Controller
                     'image' => $request->file('image')->getClientOriginalName()
                 ]);
 
-                try {
-                    $image_name = $request->file('image')->getClientOriginalName();
+                $image_name = $request->file('image')->getClientOriginalName();
 
-                    $path = $request->file('image')->storeAs(
-                        'public/word_images', $image_name
-                    );
-                }catch (\Exception $exception){
-                    Log::info($exception->getMessage());
-                    return redirect()->back()->with('message', [
-                        'status' => 'error',
-                        'text' => $exception->getMessage()
-                    ]);
-                }
+                $path = $request->file('image')->storeAs(
+                    'public/word_images', $image_name
+                );
+
             }
 
         }catch (\Exception $exc){
             Log::info($exc->getMessage());
+            return redirect()->back()->with('message', [
+                'status' => 'error',
+                'text' => $exc->getMessage()
+            ]);
         }
 
         return redirect('words')->with('message', [

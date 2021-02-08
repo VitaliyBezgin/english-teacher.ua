@@ -12,6 +12,11 @@ class Category extends Model
 
     protected $table = "categories";
 
+    protected $fillable = [
+        'category_title',
+        'category_type'
+    ];
+
     public function theories()
     {
         return $this->HasMany(Theory::class);
@@ -22,8 +27,8 @@ class Category extends Model
         return $this->hasMany(Words::class);
     }
 
-    public function file()
+    public function image()
     {
-        return $this->morphOne(Files::class, 'fileable');
+        return $this->morphOne(Image::class, 'imageables');
     }
 }

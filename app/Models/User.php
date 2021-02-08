@@ -59,4 +59,8 @@ class User extends Authenticatable
     {
         return $this->morphOne(Files::class, 'fileable');
     }
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageables');
+    }
 }
