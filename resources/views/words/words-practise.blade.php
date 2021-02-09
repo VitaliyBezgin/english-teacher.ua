@@ -8,7 +8,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="elements w-50 m-auto">
+        <div class="elements w-50 m-auto words-list">
             @foreach(json_decode($words['words']) as $word => $val)
                 <form class="word_form">
                     <div class="form-group">

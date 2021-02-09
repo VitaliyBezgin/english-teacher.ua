@@ -1849,29 +1849,49 @@ __webpack_require__.r(__webpack_exports__);
 window.onload = function () {
   var word_form = $('.word_form');
   var i = 0;
+  var increment_answers = 0;
+  var block_btn = true;
   $(word_form[i]).fadeIn();
   word_form.submit(function (e) {
     e.preventDefault();
     var this_form = this;
     var user_answer = word_form.find($('.answer'));
-    var last_word = word_form.length;
-    console.log(last_word);
-    axios.post('http://english-teacher.ua/check/answers', {
-      word: user_answer.val(),
-      id: user_answer.attr('data-id'),
-      last: false
-    }).then(function (response) {
-      $(this_form).find($('.result')).text(response.data);
-      setTimeout(function () {
-        $(word_form[i]).fadeOut();
-        this_form.remove();
-        i++;
-        $(word_form[i]).fadeIn();
-      }, 3000);
-      console.log(response.data);
-    })["catch"](function (error) {
-      console.log(error);
-    });
+
+    if (block_btn !== false) {
+      increment_answers++;
+      block_btn = false;
+      axios.post('http://english-teacher.ua/check/answers', {
+        word: user_answer.val(),
+        id: user_answer.attr('data-id'),
+        answer_count: increment_answers
+      }).then(function (response) {
+        var server_response = response.data;
+        $(this_form).find($('.result')).text(server_response.result);
+
+        if (server_response.message !== undefined) {
+          $(this_form).find($('.result')).text(server_response.result + ' ' + server_response.message);
+        }
+
+        setTimeout(function () {
+          $(word_form[i]).fadeOut();
+          this_form.remove();
+          i++;
+          $(word_form[i]).fadeIn();
+          block_btn = true;
+        }, 1000);
+        console.log(server_response);
+
+        if (server_response.status === 'final') {
+          var words_list = $('.words-list');
+          words_list.after("<button type='button' class=' btn btn-outline-dark try_again'>Try again</button>");
+          $('.try_again').click(function () {
+            window.location = window.location.href;
+          });
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
   });
 };
 

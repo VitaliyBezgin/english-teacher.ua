@@ -16,6 +16,12 @@ class PageController extends Controller
     {
         return view('welcome');
     }
+
+    public function profile()
+    {
+        return view('profile.welcome');
+    }
+
     public function studyWords()
     {
         $words = Words::with(['category', 'image'])->paginate(4);

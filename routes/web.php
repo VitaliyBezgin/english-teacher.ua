@@ -11,6 +11,7 @@ Route::get('/dashboard', function () {
 
 Route::get('words/all', [PageController::class, 'studyWords']);
 Route::middleware('auth')->group(function (){
+    Route::get('profile', [PageController::class, 'profile']);
     Route::get('/words/practise/{id}', [UserWordsController::class, 'wordsPractise']);
     Route::post('check/answers', [UserWordsController::class, 'answerHandle']);
 });
