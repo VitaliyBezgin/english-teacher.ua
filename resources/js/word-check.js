@@ -51,6 +51,7 @@ window.onload = function (){
                     console.log(server_response)
                     if (server_response.status === 'final'){
                         let words_list = $('.words-list')
+
                         words_list.after("<button type='button' class=' btn btn-outline-dark try_again'>Try again</button>")
 
                         $('.try_again').click(function (){

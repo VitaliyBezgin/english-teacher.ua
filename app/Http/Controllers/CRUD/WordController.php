@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\CRUD;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\CRUD\Tools\WordsExplode;
+use App\Http\Controllers\CRUD\Tools\TaskExploder;
 use App\Http\Requests\WordList;
 use App\Models\Category;
 use App\Models\Image;
@@ -53,7 +53,7 @@ class WordController extends Controller
             $words->fill([
                 'words_title' => $request->words_title,
                 'category_id' => $request->category_id,
-                'words' => WordsExplode::explodeWords($request->words)
+                'words' => TaskExploder::explodeWords($request->words)
             ]);
 
             $res = $words->save();

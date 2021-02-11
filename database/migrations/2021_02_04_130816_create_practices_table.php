@@ -17,6 +17,7 @@ class CreatePracticesTable extends Migration
             $table->id()->unsigned();
             $table->foreignId('theory_id')->constrained('theories')->onDelete('cascade');
             $table->json('questions');
+            $table->unique('theory_id');
             $table->timestamps();
         });
     }

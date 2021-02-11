@@ -47,7 +47,7 @@ class User extends Authenticatable
 
     public function level()
     {
-        return $this->belongsTo(Level::class);
+        return $this->hasOne(Level::class);
     }
 
     public function friends()

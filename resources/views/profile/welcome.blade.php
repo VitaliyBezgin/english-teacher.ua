@@ -8,6 +8,9 @@
             <li>
                 <a href="{{url('theory/create')}}">theory create</a>
             </li>
+            <li>
+                <a href="{{url('words/all')}}">words all</a>
+            </li>
         </ul>
     </x-slot>
 

@@ -24,6 +24,12 @@
             <li><a href="{{url('categories/create')}}">category create</a></li>
         </ul>
     </div>
+    <div>
+        <h4>Practise</h4>
+        <ul>
+            <li><a href="{{url('practise/create')}}">practise create</a></li>
+        </ul>
+    </div>
 </div>
 <hr>
 

@@ -7,13 +7,43 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class UserWordsController extends Controller
 {
+    public function wordsGetFile($id)
+    {
+        if (intval($id)){
+            try {
+                $userWordFile = storage_path().'/app/public/user_files/'.Auth::id().'wordFile'.'.txt';
+                $file = fopen($userWordFile, 'w');
+                foreach (json_decode(Cache::get('words')->words) as $index => $val){
+                    fwrite($file, $index.'. '.$val->translate.' - '.$val->origin. "\n");
+                }
+                fclose($file);
+
+            $filePath = public_path('storage/user_files/'.Auth::id().'wordFile'.'.txt');
+            $headers = ['Content-Type: application/txt'];
+            $fileName = time().'.txt';
+
+            return response()->download($filePath, $fileName, $headers);
+
+            }catch (\Exception $e){
+                print $e->getMessage();
+            }
+        }
+    }
+
     public function wordsPractise($id)
     {
         if (Cache::get('words', false) == false){
+
             $words = Words::with(['category', 'image'])->where('id', $id)->first();
+
+            if ($words == null){
+                return redirect('/');
+            }
+
             Cache::put('words', $words, now()->addMinutes(60));
         }
 
