@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Фев 08 2021 г., 20:53
+-- Время создания: Фев 11 2021 г., 21:17
 -- Версия сервера: 8.0.22-0ubuntu0.20.04.3
 -- Версия PHP: 7.4.3
 
@@ -41,16 +41,16 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `category_title`, `category_type`, `created_at`, `updated_at`) VALUES
-(1, 'Staff Psychologist', 'for words', '2021-02-07 11:07:53', '2021-02-07 11:07:53'),
-(2, 'Audiologist', 'for theory', '2021-02-07 11:07:53', '2021-02-07 11:07:53'),
-(3, 'Judge', 'for theory', '2021-02-07 11:07:54', '2021-02-07 11:07:54'),
-(4, 'Well and Core Drill Operator', 'for theory', '2021-02-07 11:07:54', '2021-02-07 11:07:54'),
-(5, 'Geography Teacher', 'for words', '2021-02-07 11:07:54', '2021-02-07 11:07:54'),
-(6, 'Pharmacist', 'for theory', '2021-02-07 11:07:54', '2021-02-07 11:07:54'),
-(7, 'Biologist', 'for words', '2021-02-07 11:07:54', '2021-02-07 11:07:54'),
-(8, 'Pediatricians', 'for words', '2021-02-07 11:07:54', '2021-02-07 11:07:54'),
-(9, 'Highway Patrol Pilot', 'for words', '2021-02-07 11:07:54', '2021-02-07 11:07:54'),
-(10, 'Supervisor of Police', 'for theory', '2021-02-07 11:07:54', '2021-02-07 11:07:54');
+(1, 'Criminal Investigator', 'for words', '2021-02-10 13:15:49', '2021-02-10 13:15:49'),
+(2, 'Prepress Technician', 'for words', '2021-02-10 13:15:49', '2021-02-10 13:15:49'),
+(3, 'Motorcycle Mechanic', 'for words', '2021-02-10 13:15:50', '2021-02-10 13:15:50'),
+(4, 'Engine Assembler', 'for theory', '2021-02-10 13:15:50', '2021-02-10 13:15:50'),
+(5, 'Psychologist', 'for words', '2021-02-10 13:15:50', '2021-02-10 13:15:50'),
+(6, 'Social Work Teacher', 'for theory', '2021-02-10 13:15:51', '2021-02-10 13:15:51'),
+(7, 'Agricultural Product Grader Sorter', 'for words', '2021-02-10 13:15:51', '2021-02-10 13:15:51'),
+(8, 'Stringed Instrument Repairer and Tuner', 'for words', '2021-02-10 13:15:52', '2021-02-10 13:15:52'),
+(9, 'Electro-Mechanical Technician', 'for words', '2021-02-10 13:15:52', '2021-02-10 13:15:52'),
+(10, 'Vice President Of Marketing', 'for theory', '2021-02-10 13:15:52', '2021-02-10 13:15:52');
 
 -- --------------------------------------------------------
 
@@ -133,9 +133,7 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`id`, `imageables_type`, `imageables_id`, `image`, `created_at`, `updated_at`) VALUES
-(5, 'App\\User', 25, 'MIKE.jpg', '2021-02-07 10:53:07', '2021-02-07 10:53:07'),
-(6, 'App\\Models\\Words', 3, 'Снимок экрана от 2021-02-04 10-33-26.png', '2021-02-07 12:47:20', '2021-02-07 12:47:20'),
-(7, 'App\\Models\\Words', 4, 'compass.png', '2021-02-07 12:55:17', '2021-02-07 12:55:17');
+(1, 'App\\Models\\User', 11, 'MIKE.jpg', '2021-02-10 13:23:30', '2021-02-10 13:23:30');
 
 -- --------------------------------------------------------
 
@@ -171,19 +169,19 @@ CREATE TABLE `migrations` (
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (13, '2021_02_07_104411_create_image_table', 3),
-(28, '2014_10_12_000000_create_users_table', 4),
-(29, '2014_10_12_100000_create_password_resets_table', 4),
-(30, '2019_08_19_000000_create_failed_jobs_table', 4),
-(31, '2021_02_04_123448_create_user_levels_table', 4),
-(32, '2021_02_04_124407_create_categories_table', 4),
-(33, '2021_02_04_124952_create_theories_table', 4),
-(34, '2021_02_04_130252_create_friends_table', 4),
-(35, '2021_02_04_130816_create_practices_table', 4),
-(36, '2021_02_04_130958_create_comments_table', 4),
-(37, '2021_02_04_131151_create_words_table', 4),
-(38, '2021_02_04_131935_create_files_table', 4),
-(39, '2021_02_06_184433_create_jobs_table', 4),
-(40, '2021_02_07_104411_create_images_table', 4);
+(41, '2014_10_12_000000_create_users_table', 4),
+(42, '2014_10_12_100000_create_password_resets_table', 4),
+(43, '2019_08_19_000000_create_failed_jobs_table', 4),
+(44, '2021_02_04_123448_create_user_levels_table', 4),
+(45, '2021_02_04_124407_create_categories_table', 4),
+(46, '2021_02_04_124952_create_theories_table', 4),
+(47, '2021_02_04_130252_create_friends_table', 4),
+(49, '2021_02_04_130958_create_comments_table', 4),
+(50, '2021_02_04_131151_create_words_table', 4),
+(51, '2021_02_04_131935_create_files_table', 4),
+(52, '2021_02_06_184433_create_jobs_table', 4),
+(53, '2021_02_07_104411_create_images_table', 4),
+(55, '2021_02_04_130816_create_practices_table', 5);
 
 -- --------------------------------------------------------
 
@@ -211,6 +209,14 @@ CREATE TABLE `practices` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Дамп данных таблицы `practices`
+--
+
+INSERT INTO `practices` (`id`, `theory_id`, `questions`, `created_at`, `updated_at`) VALUES
+(3, 1, '{\"1\": {\"answer\": \"1\", \"options\": {\"1\": \"I have not seen him today\", \"2\": \"I has not saw him today\", \"3\": \"I did not see him today\"}, \"questionText\": \"I saw Tom yesterday, but ....\"}, \"2\": {\"answer\": \"2\", \"options\": {\"1\": \"aaaaaaaaa\", \"2\": \"bbbbbbbbbb\", \"3\": \"ccccccccccccc\"}, \"questionText\": \"I saw Tom yesterday, but ....\"}}', '2021-02-11 13:45:33', '2021-02-11 13:45:33'),
+(4, 2, '{\"1\": {\"answer\": \"1\", \"options\": {\"1\": \"I have not seen him today\", \"2\": \"I has not saw him today\", \"3\": \"I did not see him today\"}, \"questionText\": \"I saw Tom yesterday, but ....\"}}', '2021-02-11 13:53:56', '2021-02-11 13:53:56');
+
 -- --------------------------------------------------------
 
 --
@@ -233,16 +239,16 @@ CREATE TABLE `theories` (
 --
 
 INSERT INTO `theories` (`id`, `category_id`, `theory_title`, `header`, `theory_video`, `theory_body`, `created_at`, `updated_at`) VALUES
-(1, 1, 'theory - >Alfonso', 'Prof.', '\"http://cronin.biz/\"', 'Latitude was, or Longitude I\'ve got to go near the door, and tried to beat them off, and she very soon finished it off. * * * * * * * * * * * * * * * \'What a curious croquet-ground in her life; it.', '2021-02-07 11:07:55', '2021-02-07 11:07:55'),
-(2, 2, 'theory - >Carroll', 'Dr.', '\"http://harris.com/quod-pariatur-error-occaecati-iusto.html\"', 'I should like it very hard indeed to make SOME change in my time, but never ONE with such a nice soft thing to eat or drink something or other; but the cook had disappeared. \'Never mind!\' said the.', '2021-02-07 11:07:55', '2021-02-07 11:07:55'),
-(3, 3, 'theory - >Jayson', 'Dr.', '\"http://mayer.net/\"', 'It was all finished, the Owl, as a drawing of a muchness?\' \'Really, now you ask me,\' said Alice, \'it\'s very easy to take MORE than nothing.\' \'Nobody asked YOUR opinion,\' said Alice. \'I\'m glad they.', '2021-02-07 11:07:56', '2021-02-07 11:07:56'),
-(4, 4, 'theory - >Finn', 'Dr.', '\"http://www.bruen.com/dolor-animi-nesciunt-eos-quae-voluptas-vel\"', 'Alice replied very gravely. \'What else have you executed.\' The miserable Hatter dropped his teacup instead of onions.\' Seven flung down his cheeks, he went on again:-- \'I didn\'t know that you\'re.', '2021-02-07 11:07:56', '2021-02-07 11:07:56'),
-(5, 5, 'theory - >Bethel', 'Dr.', '\"https://pfeffer.com/consequatur-beatae-aut-enim-hic.html\"', 'Bill had left off when they hit her; and the March Hare. Alice was beginning to get in?\' \'There might be some sense in your pocket?\' he went on talking: \'Dear, dear! How queer everything is queer.', '2021-02-07 11:07:56', '2021-02-07 11:07:56'),
-(6, 6, 'theory - >Everett', 'Dr.', '\"https://fisher.info/quasi-et-hic-labore-odio-molestiae.html\"', 'ME\' beautifully printed on it except a little wider. \'Come, it\'s pleased so far,\' said the Dormouse, after thinking a minute or two, it was neither more nor less than a real nose; also its eyes.', '2021-02-07 11:07:56', '2021-02-07 11:07:56'),
-(7, 7, 'theory - >Caroline', 'Mrs.', '\"http://www.hartmann.biz/molestiae-aut-voluptatem-quisquam-velit\"', 'When the sands are all pardoned.\' \'Come, THAT\'S a good deal: this fireplace is narrow, to be patted on the breeze that followed them, the melancholy words:-- \'Soo--oop of the tea--\' \'The twinkling.', '2021-02-07 11:07:56', '2021-02-07 11:07:56'),
-(8, 8, 'theory - >Jackeline', 'Prof.', '\"http://cummerata.com/quidem-esse-doloremque-ut-eum\"', 'I suppose Dinah\'ll be sending me on messages next!\' And she squeezed herself up and beg for its dinner, and all of them attempted to explain the mistake it had fallen into the way the people near.', '2021-02-07 11:07:56', '2021-02-07 11:07:56'),
-(9, 9, 'theory - >Breanne', 'Mr.', '\"http://www.satterfield.com/dignissimos-ratione-saepe-et-quod-aut-assumenda-dolore-amet.html\"', 'Duchess, as she could, and waited till she was up to Alice, flinging the baby violently up and said, without even waiting to put everything upon Bill! I wouldn\'t say anything about it, so she helped.', '2021-02-07 11:07:56', '2021-02-07 11:07:56'),
-(10, 10, 'theory - >Earline', 'Prof.', '\"http://www.schultz.com/\"', 'Mouse with an M--\' \'Why with an air of great relief. \'Call the next witness!\' said the Dormouse; \'--well in.\' This answer so confused poor Alice, \'to speak to this last remark that had fluttered.', '2021-02-07 11:07:56', '2021-02-07 11:07:56');
+(1, 1, 'theory - >Judge', 'Prof.', '\"http://dicki.com/quasi-aut-vitae-quidem-dicta-ducimus\"', 'William and offer him the crown. William\'s conduct at first she thought it had made. \'He took me for asking! No, it\'ll never do to ask: perhaps I shall think nothing of the month is it?\' Alice.', '2021-02-10 13:15:52', '2021-02-10 13:15:52'),
+(2, 2, 'theory - >Mia', 'Mr.', '\"http://www.toy.net/aliquam-eius-unde-alias-ea-atque-assumenda-doloribus-soluta.html\"', 'Alice was silent. The Dormouse again took a great deal of thought, and looked anxiously over his shoulder with some curiosity. \'What a curious dream, dear, certainly: but now run in to your places!\'.', '2021-02-10 13:15:52', '2021-02-10 13:15:52'),
+(3, 3, 'theory - >Demetris', 'Prof.', '\"http://www.prosacco.org/rem-et-fugit-eum-ab-similique-explicabo-aut.html\"', 'YOU?\' Which brought them back again to the Queen. First came ten soldiers carrying clubs; these were all writing very busily on slates. \'What are tarts made of?\' Alice asked in a dreamy sort of.', '2021-02-10 13:15:53', '2021-02-10 13:15:53'),
+(4, 4, 'theory - >Vincenzo', 'Dr.', '\"http://schroeder.com/nobis-tenetur-natus-voluptatibus-aut\"', 'I\'ll kick you down stairs!\' \'That is not said right,\' said the Cat went on, \'and most things twinkled after that--only the March Hare will be the right word) \'--but I shall never get to the game.', '2021-02-10 13:15:53', '2021-02-10 13:15:53'),
+(5, 5, 'theory - >Carey', 'Dr.', '\"http://www.tremblay.com/voluptatibus-tenetur-explicabo-expedita-voluptatibus-doloremque.html\"', 'Alice did not like the largest telescope that ever was! Good-bye, feet!\' (for when she had not attended to this last remark, \'it\'s a vegetable. It doesn\'t look like it?\' he said, turning to the.', '2021-02-10 13:15:53', '2021-02-10 13:15:53'),
+(6, 6, 'theory - >Alberta', 'Dr.', '\"http://roberts.com/aut-molestias-commodi-fuga-nihil\"', 'Yet you finished the goose, with the words did not get dry again: they had settled down again in a soothing tone: \'don\'t be angry about it. And yet you incessantly stand on your head-- Do you think.', '2021-02-10 13:15:53', '2021-02-10 13:15:53'),
+(7, 7, 'theory - >Shanie', 'Mr.', '\"http://www.abbott.com/et-voluptatem-nihil-quo-praesentium\"', 'The great question is, what?\' The great question certainly was, what? Alice looked up, but it had a wink of sleep these three little sisters,\' the Dormouse shook itself, and was coming to, but it.', '2021-02-10 13:15:54', '2021-02-10 13:15:54'),
+(8, 8, 'theory - >Guillermo', 'Prof.', '\"http://www.ferry.com/commodi-tempora-necessitatibus-laborum\"', 'Queen\'s ears--\' the Rabbit asked. \'No, I didn\'t,\' said Alice: \'allow me to him: She gave me a pair of white kid gloves in one hand, and Alice rather unwillingly took the least notice of her ever.', '2021-02-10 13:15:54', '2021-02-10 13:15:54'),
+(9, 9, 'theory - >Catharine', 'Dr.', '\"http://bartell.info/maiores-aut-vitae-fuga-quo-animi-in-et-occaecati\"', 'His voice has a timid voice at her rather inquisitively, and seemed to be full of tears, but said nothing. \'This here young lady,\' said the Pigeon. \'I can hardly breathe.\' \'I can\'t help it,\' said.', '2021-02-10 13:15:54', '2021-02-10 13:15:54'),
+(10, 10, 'theory - >Albin', 'Mrs.', '\"http://bashirian.com/omnis-rerum-amet-odio-quod-soluta.html\"', 'Caterpillar\'s making such VERY short remarks, and she heard a little more conversation with her head through the glass, and she could do, lying down on the glass table and the jury wrote it down.', '2021-02-10 13:15:54', '2021-02-10 13:15:54');
 
 -- --------------------------------------------------------
 
@@ -268,17 +274,17 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `fname`, `sname`, `email`, `phone`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(25, 'Виталий', 'Безгин', 'bezgin96@ukr.net', '0931205426', NULL, '$2y$10$p1JKb6PYLvDe2PvE/GinYu8plEZbUB4M9bNNh2l0FQjsZth.gw2cC', NULL, '2021-02-07 10:53:07', '2021-02-07 10:53:07'),
-(26, 'Katrine', 'Trantow', 'buster.tromp@example.com', '1-892-556-3697', '2021-02-07 11:07:50', '$2y$10$tGWMG21eyhIC8izMw/pRbeUzoGp9A4EA0hMDw1zkmfHMiSJVotJ/.', 'GI7gLMpdkG', '2021-02-07 11:07:50', '2021-02-07 11:07:50'),
-(27, 'Keara', 'Dicki', 'yklein@example.net', '(350) 239-8279', '2021-02-07 11:07:50', '$2y$10$IDs/sbnqQQeGWy8cNN5NXO9.7Ld0Tm2BKgPoituW6n44LRisLHsPC', 'EPPw7yTmdM', '2021-02-07 11:07:50', '2021-02-07 11:07:50'),
-(28, 'Kevin', 'Roberts', 'leonardo90@example.org', '1-893-236-7014', '2021-02-07 11:07:50', '$2y$10$aKH3DWX4qCaJg2BXcCJTtu6ROuIGW.I1n8tOaKI90uT2tUmp5xyau', 'ASzin7jKoc', '2021-02-07 11:07:50', '2021-02-07 11:07:50'),
-(29, 'Lorenza', 'Hagenes', 'pacocha.evans@example.org', '(568) 906-4279', '2021-02-07 11:07:50', '$2y$10$Wg/zKTzMPxV04YYtuLDoZ.DFcCU2i7ayKJGB7.gZ9KHn0GPiGRXZi', 'Lg7Ikur455', '2021-02-07 11:07:50', '2021-02-07 11:07:50'),
-(30, 'Noemi', 'Hermiston', 'schulist.rosalia@example.net', '+13519997404', '2021-02-07 11:07:50', '$2y$10$sRWf.PSq5QaEM9fSY1Urre3VAm93hmXPCGjvqL0vpzgszdQ0T1HaK', 'uNZUWKbeC7', '2021-02-07 11:07:50', '2021-02-07 11:07:50'),
-(31, 'Clementine', 'Miller', 'braun.monserrate@example.com', '1-806-984-3484', '2021-02-07 11:07:51', '$2y$10$DxF9E8j0lR3vP4kNF4yJp.qTXvdAXt1Qg.X7SmpI4FPOB6Ho6Ep4a', 'bK4SSVgmQR', '2021-02-07 11:07:51', '2021-02-07 11:07:51'),
-(32, 'Felicity', 'Heller', 'jared52@example.com', '1-813-755-1437', '2021-02-07 11:07:51', '$2y$10$qHN0BUobUdHHmU15nHN9J.lf3nvdBOHgzZzHafxXy8z5i/0C/WzsC', 'p5T9lbhyb0', '2021-02-07 11:07:51', '2021-02-07 11:07:51'),
-(33, 'Jewel', 'Barrows', 'elinor72@example.org', '1-405-963-7517', '2021-02-07 11:07:51', '$2y$10$m2sSAFN5uDJf7VWH1J8q8OetvRUsyImdtjf22EexK7P8HnG/0ZDHO', 'ZQV9SYsjhJ', '2021-02-07 11:07:51', '2021-02-07 11:07:51'),
-(34, 'Mossie', 'Conn', 'leonor.prosacco@example.org', '+1.415.366.5027', '2021-02-07 11:07:51', '$2y$10$NXIK5A2J0pRHPwm8NW8Z5..FxdwY/0hQV7B2Gj.OeNe/kmb1zZRDm', 'NaOI6CTLxU', '2021-02-07 11:07:51', '2021-02-07 11:07:51'),
-(35, 'Ona', 'Farrell', 'pollich.emile@example.net', '323.501.4223', '2021-02-07 11:07:51', '$2y$10$lKDWfd7oSiC2cdvGtLjiZ.tPpjZpYhi0fi4.pQZjxTAw/cDJIFVl.', 'h0xrHukIJM', '2021-02-07 11:07:51', '2021-02-07 11:07:51');
+(1, 'Dorian', 'Adams', 'trevor75@example.net', '+1-925-826-4948', '2021-02-10 13:15:41', '$2y$10$trrzMU0R3tqki8gLBJk1QeovaqARpp052GpbNu92SlPxJ5z43YON2', 'aCDTaU0Zek', '2021-02-10 13:15:41', '2021-02-10 13:15:41'),
+(2, 'Stephany', 'Daugherty', 'osborne.beier@example.org', '+1 (269) 219-1607', '2021-02-10 13:15:42', '$2y$10$MzS26hm4ImZDi5rCLcEnceWxZot6ijwUbPfJFocoTQ414XwateHZS', 'hhDJ72Oy1z', '2021-02-10 13:15:42', '2021-02-10 13:15:42'),
+(3, 'Alanis', 'Medhurst', 'yluettgen@example.net', '1-668-661-8121', '2021-02-10 13:15:42', '$2y$10$fHXA55RqBHiFoXv1aa2jZ.QtJ.kgdIgfgR9lQGSZ6DZRYRw2UUnhS', 'm0u3KLcWRQ', '2021-02-10 13:15:42', '2021-02-10 13:15:42'),
+(4, 'Kaitlin', 'Baumbach', 'cecelia79@example.com', '1-798-383-9623', '2021-02-10 13:15:42', '$2y$10$qOUrA2WtPogklEz28fpcDuNYQ5PBhhDwYReVyET5ScE943psM4AKm', '8fAUyDAlwu', '2021-02-10 13:15:42', '2021-02-10 13:15:42'),
+(5, 'Cara', 'Grant', 'moshe38@example.net', '554.789.5584', '2021-02-10 13:15:43', '$2y$10$kmp2xSkppogdFyhji9csnO1e5EFS50UWU2JocrmbcP7H36Xowbqna', 'IOMAGwGTiZ', '2021-02-10 13:15:43', '2021-02-10 13:15:43'),
+(6, 'Estrella', 'Denesik', 'janet96@example.org', '1-289-810-0110', '2021-02-10 13:15:43', '$2y$10$hnLMmCtmjlScbjLhi/7pi.Gd5Q/t1XJjrYJXvXQzn6bKd9ND0AHEa', 'eMqe577Wie', '2021-02-10 13:15:43', '2021-02-10 13:15:43'),
+(7, 'Deangelo', 'Kerluke', 'astamm@example.org', '207.413.1403', '2021-02-10 13:15:43', '$2y$10$xTKtQJYU/mZKSZd15kZNJu77btqXh0FDjm8rd66cu.cAoWTCJnt2W', 'XxFGI8AxwL', '2021-02-10 13:15:43', '2021-02-10 13:15:43'),
+(8, 'Percy', 'Lind', 'chadrick18@example.com', '(487) 884-4778', '2021-02-10 13:15:43', '$2y$10$ntTfGP4lMhanPvzcqPgb9.nE9.NNrbncwBGIiM1/qM67WlRALxPNe', '5kryqStTsZ', '2021-02-10 13:15:44', '2021-02-10 13:15:44'),
+(9, 'Boris', 'Altenwerth', 'lcartwright@example.org', '960.422.8404', '2021-02-10 13:15:44', '$2y$10$MM00hzrk2/O4AGqJ5GwGD.Ok/4gZp.Wcwv.6KsCu/4WONddJCxloK', 'yc59m9oTa1', '2021-02-10 13:15:44', '2021-02-10 13:15:44'),
+(10, 'Fermin', 'Boyle', 'erwin81@example.com', '1-720-475-8085', '2021-02-10 13:15:45', '$2y$10$kje5YAD53F/DocDrEfF0rOXq8kIl8l23KZ/2sa616In80Yvvf7Dxm', '5zbkvdAFuU', '2021-02-10 13:15:45', '2021-02-10 13:15:45'),
+(11, 'Виталий', 'Безгин', 'bezgin96@ukr.net', '0931205426', NULL, '$2y$10$4OP5OtBBFIgh0jV3gfjide7OpyjBibTdFh7sFC91KvZhfVLvllFxu', NULL, '2021-02-10 13:23:30', '2021-02-10 13:23:30');
 
 -- --------------------------------------------------------
 
@@ -300,17 +306,7 @@ CREATE TABLE `user_levels` (
 --
 
 INSERT INTO `user_levels` (`id`, `user_id`, `level`, `points`, `created_at`, `updated_at`) VALUES
-(1, 26, 3, 5915, '2021-02-07 11:07:52', '2021-02-07 11:07:52'),
-(2, 27, 3, 1167, '2021-02-07 11:07:52', '2021-02-07 11:07:52'),
-(3, 28, 4, 6572, '2021-02-07 11:07:52', '2021-02-07 11:07:52'),
-(4, 29, 6, 7486, '2021-02-07 11:07:52', '2021-02-07 11:07:52'),
-(5, 30, 9, 5161, '2021-02-07 11:07:52', '2021-02-07 11:07:52'),
-(6, 31, 9, 4022, '2021-02-07 11:07:52', '2021-02-07 11:07:52'),
-(7, 32, 9, 4323, '2021-02-07 11:07:53', '2021-02-07 11:07:53'),
-(8, 33, 7, 5009, '2021-02-07 11:07:53', '2021-02-07 11:07:53'),
-(9, 34, 8, 8969, '2021-02-07 11:07:53', '2021-02-07 11:07:53'),
-(10, 35, 8, 9547, '2021-02-07 11:07:53', '2021-02-07 11:07:53'),
-(11, 25, 0, 50, NULL, '2021-02-08 15:40:42');
+(11, 11, 0, 75, NULL, '2021-02-11 17:04:38');
 
 -- --------------------------------------------------------
 
@@ -332,8 +328,7 @@ CREATE TABLE `words` (
 --
 
 INSERT INTO `words` (`id`, `words_title`, `category_id`, `words`, `created_at`, `updated_at`) VALUES
-(4, 'animals', 1, '{\"1\": {\"origin\": \"cat\", \"translate\": \"кот\"}, \"2\": {\"origin\": \"dog\", \"translate\": \"собака\"}, \"3\": {\"origin\": \"car\", \"translate\": \"автомобиль\"}, \"4\": {\"origin\": \"girl\", \"translate\": \"девушка\"}}', '2021-02-07 12:55:17', '2021-02-07 12:55:17'),
-(5, 'Лексика по теме «Город»', 1, '{\"1\": {\"origin\": \"chemist\'s\", \"translate\": \"аптека\"}, \"2\": {\"origin\": \"arch\", \"translate\": \"арка\"}, \"3\": {\"origin\": \"bank\", \"translate\": \"банк\"}, \"4\": {\"origin\": \"bar\", \"translate\": \"бар\"}, \"5\": {\"origin\": \"swimming pool\", \"translate\": \"бассейн\"}, \"6\": {\"origin\": \"library\", \"translate\": \" библиотека\"}}', '2021-02-08 07:44:42', '2021-02-08 07:44:42');
+(1, 'animals', 1, '{\"1\": {\"origin\": \"cat\", \"translate\": \"кот\"}, \"2\": {\"origin\": \"dog\", \"translate\": \"собака\"}, \"3\": {\"origin\": \"car\", \"translate\": \"автомобиль\"}, \"4\": {\"origin\": \"girl\", \"translate\": \"девушка\"}}', '2021-02-11 15:03:29', '2021-02-11 15:03:29');
 
 --
 -- Индексы сохранённых таблиц
@@ -407,7 +402,7 @@ ALTER TABLE `password_resets`
 --
 ALTER TABLE `practices`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `practices_theory_id_foreign` (`theory_id`);
+  ADD UNIQUE KEY `practices_theory_id_unique` (`theory_id`);
 
 --
 -- Индексы таблицы `theories`
@@ -449,7 +444,7 @@ ALTER TABLE `words`
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `comments`
@@ -479,7 +474,7 @@ ALTER TABLE `friends`
 -- AUTO_INCREMENT для таблицы `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `jobs`
@@ -491,13 +486,13 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT для таблицы `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT для таблицы `practices`
 --
 ALTER TABLE `practices`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `theories`
@@ -509,7 +504,7 @@ ALTER TABLE `theories`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT для таблицы `user_levels`
@@ -521,7 +516,7 @@ ALTER TABLE `user_levels`
 -- AUTO_INCREMENT для таблицы `words`
 --
 ALTER TABLE `words`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
