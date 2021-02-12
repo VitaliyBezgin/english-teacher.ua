@@ -6,7 +6,7 @@
                 <img src="{{asset('storage/word_images/'.$word->image->image)}}" alt="">
             @endif
             <ul>
-                <li>{{$word->category->category_title}}</li>
+                <li><a href="{{url('words/practice/'.$word->id)}}">{{$word->category->category_title}}</a></li>
             </ul>
         @endforeach
     </div>

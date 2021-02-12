@@ -32,7 +32,7 @@ class WordController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('category_type', 'for words')->get();
+        $categories = Category::where('category_type', 'words')->get();
 
         return view('crud.words.create', ['categories' => $categories]);
     }

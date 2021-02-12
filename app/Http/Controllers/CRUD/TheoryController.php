@@ -6,6 +6,7 @@ use App\Events\NewTheory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTheoryRequest;
 use App\Jobs\NotifyAfterNewTheory;
+use App\Models\Category;
 use App\Models\Theory;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class TheoryController extends Controller
      */
     public function index()
     {
-        $theories = Theory::paginate(3);
+        $theories = Theory::with('practice')->paginate(3);
 
         return view('crud.theory.index', ['theories' => $theories]);
     }
@@ -32,9 +33,9 @@ class TheoryController extends Controller
      */
     public function create()
     {
-        $theories = Theory::with('category')->get();
+        $categories = Category::where('category_type', '=', 'theory')->get();
 
-        return view('crud.theory.create', ['theories' => $theories]);
+        return view('crud.theory.create', ['categories' => $categories]);
     }
 
     /**

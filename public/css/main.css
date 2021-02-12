@@ -5,3 +5,11 @@
 .questions {
   display: none;
 }
+
+#getWordsFile {
+  display: none;
+}
+
+.exercises-box form {
+  display: none;
+}

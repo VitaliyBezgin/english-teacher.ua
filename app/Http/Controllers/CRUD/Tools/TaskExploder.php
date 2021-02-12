@@ -44,7 +44,7 @@ class TaskExploder
      * @answer@ = question answer;
      * @options@ = answer options;
      * @,@ = options delimiter;
-     * @;@ practise delimiter;
+     * @;@ practice delimiter;
      * */
     public static function explodePractise(string $data):string
     {

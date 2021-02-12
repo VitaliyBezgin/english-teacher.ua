@@ -40,7 +40,7 @@ class PractiseController extends Controller
 
         $theories = Theory::whereNotIn('id', $practice_ids)->get();
 
-        return view('crud.practise.create', ['theories' => $theories]);
+        return view('crud.practice.create', ['theories' => $theories]);
     }
 
     /**

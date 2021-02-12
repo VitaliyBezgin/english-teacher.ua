@@ -27,7 +27,7 @@ class StoreTheoryRequest extends FormRequest
             'theory_title' => 'required|unique:theories|min:3|max:100|string',
             'category_id' => 'required|integer',
             'header' => 'required|min:3|max:150',
-            'theory_body' => 'required|min:10|max:2000'
+            'theory_body' => 'required|min:10|max:15000'
         ];
     }
 }

@@ -27,7 +27,7 @@
     <div>
         <h4>Practise</h4>
         <ul>
-            <li><a href="{{url('practise/create')}}">practise create</a></li>
+            <li><a href="{{url('practice/create')}}">practise create</a></li>
         </ul>
     </div>
 </div>

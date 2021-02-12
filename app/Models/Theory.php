@@ -26,9 +26,9 @@ class Theory extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function practices()
+    public function practice()
     {
-        return $this->belongsTo(Practice::class);
+        return $this->hasOne(Practice::class);
     }
 
     public function file()

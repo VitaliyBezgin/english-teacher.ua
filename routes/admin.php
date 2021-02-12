@@ -9,6 +9,6 @@ Route::middleware('auth')->group(function (){
     Route::resource('theory', TheoryController::class);
     Route::resource('words', WordController::class);
     Route::resource('categories', CategoryController::class);
-    Route::resource('practise', PractiseController::class);
+    Route::resource('practice', PractiseController::class);
 });
 

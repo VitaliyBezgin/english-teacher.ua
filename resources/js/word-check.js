@@ -1,66 +1,64 @@
 import 'axios'
 
 window.onload = function (){
-    let word_form = $('.word_form')
-    let i = 0
-    let increment_answers = 0
-    let block_btn = true
+    let wordForms = $('.word_form'),
+        i = 0,
+        word_list_id = $('#words_list_id').text(),
+        buttonToggle = true;
 
-    $(word_form[i]).fadeIn();
+        //show first form
+    $(wordForms[i]).fadeIn();
 
-    word_form.submit(function (e){
+    $('form').submit(function (e){
         e.preventDefault()
 
-        let this_form = this;
-        let user_answer = word_form.find($('.answer'))
+        if (buttonToggle === true){
 
-        if (block_btn !== false){
+            buttonToggle = false
 
-            increment_answers++
+            let word_id = $(this).find('input[name=word]').data('id'),
+                answer = $(this).find('input[name=word]').val()
 
-            block_btn = false
-
-            axios.post('http://english-teacher.ua/check/answers', {
-                word: user_answer.val(),
-                id:user_answer.attr('data-id'),
-                answer_count:increment_answers
+            axios.post("http://english-teacher.ua/check-words", {
+                answer: answer,
+                word_id: word_id,
+                words_list_id:word_list_id
             })
                 .then(function (response) {
-
-                    let server_response = response.data;
-
-                    $(this_form).find($('.result')).text(server_response.result)
-
-                    if (server_response.message !== undefined){
-                        $(this_form).find($('.result')).text(server_response.result+ ' ' + server_response.message)
+                   let server_response = response.data
+                    console.log(server_response)
+                    if (server_response.result === 'true'){
+                        $(wordForms[i]).find('.result').text(server_response.icon)
                     }
+                    if(server_response.result === 'wrong'){
+                        $(wordForms[i]).find('.result').html(server_response.icon+ " <span> "+server_response.origin+"</span>")
+                    }
+                    if (server_response.message !== undefined) {
+                        $('.message').append("<p>"+server_response.message+"</p>")
+                    }
+                    if (server_response.status === 'finished'){
+                        //show button for download words file
+                        $('#getWordsFile').fadeIn()
 
+                        $('.words-list').after("<button type='button' class='btn btn-outline-dark try_again'>Try again</button>")
+                    }
                     setTimeout(function (){
-                        $(word_form[i]).fadeOut()
-
-                        this_form.remove()
+                        $(wordForms[i]).remove()
 
                         i++
 
-                        $(word_form[i]).fadeIn()
+                        buttonToggle = true
 
-                        block_btn = true
+                        $(wordForms[i]).fadeIn()
+                    }, 1500)
 
-                    }, 1000)
+                    $('.try_again').click(function (){
+                        window.location = window.location.href
+                    })
 
-                    console.log(server_response)
-                    if (server_response.status === 'final'){
-                        let words_list = $('.words-list')
-
-                        words_list.after("<button type='button' class=' btn btn-outline-dark try_again'>Try again</button>")
-
-                        $('.try_again').click(function (){
-                           window.location = window.location.href
-                        })
-                    }
                 })
                 .catch(function (error) {
-                    console.log(error)
+                    console.log(error);
                 });
         }
     })

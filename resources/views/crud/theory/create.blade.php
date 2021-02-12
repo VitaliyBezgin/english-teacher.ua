@@ -10,8 +10,8 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <select name="category_id" id="" class="form-control @error('category_id') is-invalid @enderror">
-                    @foreach($theories as $theory)
-                        <option value="{{$theory->category->id}}">{{$theory->category->category_title}}</option>
+                    @foreach($categories as $category)
+                        <option value="{{$category->id}}">{{$category->category_title}}</option>
                     @endforeach
                 </select>
             </div>

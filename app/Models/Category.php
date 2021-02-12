@@ -19,7 +19,7 @@ class Category extends Model
 
     public function theories()
     {
-        return $this->HasMany(Theory::class);
+        return $this->hasMany(Theory::class);
     }
 
     public function words()

@@ -10,7 +10,7 @@
         <div class="elements">
             @foreach($words as $word)
                 <div class="item">
-                    <a href="{{url('words/practise/'.$word->id)}}">{{$word->category->category_title}}</a>
+                    <a href="{{url('words/practice/'.$word->id)}}">{{$word->category->category_title}}</a>
                 </div>
             @endforeach
         </div>

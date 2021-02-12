@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserWordsController;
+use App\Http\Controllers\UserTheoryPracticeController;
 
 Route::get('/', [PageController::class, 'welcome']);
 Route::get('/dashboard', function () {
@@ -12,10 +13,11 @@ Route::get('/dashboard', function () {
 Route::get('words/all', [PageController::class, 'studyWords']);
 Route::middleware('auth')->group(function (){
     Route::get('profile', [PageController::class, 'profile']);
-    Route::get('/words/practise/{id}', [UserWordsController::class, 'wordsPractise']);
+    Route::get('/words/practice/{id}', [UserWordsController::class, 'wordsPractise']);
     Route::get('/words/getFile/{id}', [UserWordsController::class, 'wordsGetFile']);
-    Route::get('download-user-words/', [UserWordsController::class, 'downloadWords']);
-    Route::post('check/answers', [UserWordsController::class, 'answerHandle']);
+    Route::post('check-words', [UserWordsController::class, 'answerHandle']);
+    Route::get('/theory/practice/{id}', [UserTheoryPracticeController::class, 'theoryPractice']);
+    Route::post('theory-practice-check', [UserTheoryPracticeController::class, 'answerHandle']);
 });
 
 require __DIR__.'/auth.php';

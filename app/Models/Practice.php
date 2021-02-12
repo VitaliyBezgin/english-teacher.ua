@@ -20,6 +20,6 @@ class Practice extends Model
 
     public function theory()
     {
-        return $this->hasOne(Theory::class);
+        return $this->belongsTo(Theory::class);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Statistic;
 use App\Models\Words;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,7 @@ class UserWordsController extends Controller
             try {
                 $userWordFile = storage_path().'/app/public/user_files/'.Auth::id().'wordFile'.'.txt';
                 $file = fopen($userWordFile, 'w');
-                foreach (json_decode(Cache::get('words')->words) as $index => $val){
+                foreach (json_decode(Cache::get('words-'.$id)->words) as $index => $val){
                     fwrite($file, $index.'. '.$val->translate.' - '.$val->origin. "\n");
                 }
                 fclose($file);
@@ -36,7 +37,7 @@ class UserWordsController extends Controller
 
     public function wordsPractise($id)
     {
-        if (Cache::get('words', false) == false){
+        if (Cache::get('words-'.$id, false) == false){
 
             $words = Words::with(['category', 'image'])->where('id', $id)->first();
 
@@ -44,12 +45,12 @@ class UserWordsController extends Controller
                 return redirect('/');
             }
 
-            Cache::put('words', $words, now()->addMinutes(60));
+            Cache::put('words-'.$id, $words, now()->addMinutes(60));
         }
 
-        $words = Cache::get('words');
+        $words = Cache::get('words-'.$id);
 
-        return view('words.words-practise', ['words' => $words]);
+        return view('words.words-practice', ['words' => $words]);
     }
 
     /*
@@ -58,55 +59,69 @@ class UserWordsController extends Controller
     public function answerHandle(Request $request)
     {
         $validated = $request->validate([
-            'word' => 'required|string|min:1|max:255',
-            'id' => 'required|integer',
-            'answer_count' => 'required|integer',
+            'answer' => 'required|string|min:1|max:255',
+            'word_id' => 'required|integer',
+            'words_list_id' => 'required|integer'
         ]);
 
-       $this->checkAnswers($request->word, $request->id, $request->answer_count);
+        $this->checkAnswer($request->answer, $request->word_id, $request->words_list_id);
     }
 
-    final private function checkAnswers($answer, $id, $answer_count)
+    final private function checkAnswer(string $answer, int $word_id, int $words_list_id)
     {
+        $response = [];
+        $message = 'Finish !';
 
-        $wordsFromCache = Cache::get('words', false);
+        $words = Cache::get('words-'.$words_list_id);
 
-        $words = json_decode($wordsFromCache['words']);
-
-        foreach ($words as $index => $key){
-            if ($id === $index){
-                if (strcasecmp($key->origin, $answer) == 0) {
-                    $this->answerCount($answer_count, $words, '✅');
-                    break;
+        foreach (json_decode($words['words']) as $index => $val){
+            if ($index == $word_id){
+                if(strcasecmp($val->origin, $answer) == 0){
+                    $response = [
+                        'result' => 'true',
+                        'icon' => '✅'
+                    ];
                 }else{
-                    $this->answerCount($answer_count, $words, '❌', $key->origin);
-                    break;
+                    $response = [
+                        'result' => 'wrong',
+                        'origin' => $val->origin,
+                        'icon' => '❌'
+                    ];
                 }
+                break;
             }
         }
-    }
 
-    final private function answerCount(int $answer, object $count_answers, string $answer_result, $correct = '')
-    {
-        $response = [
-            'result' => $answer_result . ' ' . $correct
-        ];
+        if($word_id == count(get_object_vars(json_decode($words['words'])))){
 
-        if ($answer == count(get_object_vars($count_answers))){
-            $levelUp = DB::table('user_levels')->updateOrInsert(
-                ['user_id' => Auth::user()->id],
-                [
-                    'points' => DB::raw('points + 25'),
-                    'updated_at' => date("Y-m-d H:i:s")
-                ]
-            );
+            //return array
+            $user_history = Statistic::where('user_id', '=', Auth::id())->
+                                       where('statistiable_id', '=', $words_list_id)->
+                                       where('statistiable_type', '=', Words::class)->first();
+            //check array
+            if (empty($user_history)){
+                DB::transaction(function () use ($words_list_id){
+                   Statistic::create([
+                       'statistiable_id' => $words_list_id,
+                       'statistiable_type' => Words::class,
+                       'user_id' => Auth::id()
+                   ]);
 
-            $response = [
-                'status' => 'final',
-                'result' => $answer_result,
-                'message' => 'Сongratulations you have earned 25 points'
-            ];
+                    DB::table('user_levels')->updateOrInsert(
+                        ['user_id' => Auth::user()->id],
+                        [
+                            'points' => DB::raw('points + 25'),
+                            'updated_at' => date("Y-m-d H:i:s")
+                        ]
+                    );
+                });
+
+                $message = "Congratulations you earn 25 points !";
+            }
+            $response['message'] = $message;
+            $response['status'] = "finished";
         }
-        print json_encode($response);
+
+       echo json_encode($response);
     }
 }

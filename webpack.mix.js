@@ -16,5 +16,5 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
     require('tailwindcss'),
     require('autoprefixer'),
 ]);
-mix.js('resources/js/practise-create.js', 'public/js');
+mix.js('resources/js/practice-check.js', 'public/js');
 mix.js('resources/js/word-check.js', 'public/js').sass('resources/sass/main.scss', 'public/css');
