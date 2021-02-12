@@ -6,9 +6,11 @@
     <x-slot name="header">
         <h1>Words choose</h1>
     </x-slot>
-
+{{--    {{dd(json_decode($words['words']))}}--}}
     <div class="py-12">
         <div class="elements w-50 m-auto words-list">
+            <a href="{{url('words/getFile/'.$words['id'])}}" class="btn btn-outline-secondary mt-4 mb-4" id="getWordsFile">Get words list</a>
+            <div id="words_list_id" style="display: none">{{$words['id']}}</div>
             @foreach(json_decode($words['words']) as $word => $val)
                 <form class="word_form">
                     <div class="form-group">
@@ -19,6 +21,8 @@
                     <input type="submit" class="answer-btn btn btn-outline-info" value="To answer">
                 </form>
             @endforeach
+
+            <div class="message"></div>
         </div>
     </div>
 
