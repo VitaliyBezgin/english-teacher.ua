@@ -13,11 +13,12 @@ class UserTheoryPracticeController extends Controller
 {
     public function theoryPractice($id)
     {
-        $practice = Cache::get('practice-'.$id, false);
 
+        $practice = Cache::get('practice-'.$id, false);
         if ($practice == false){
             $getPractice = Theory::with('practice')->first();
-            Cache::put('practice-'.$id, $getPractice);
+            Cache::put('practice-'.$id, $getPractice, 60);
+            Cache::put('theory-practice-'.$id, $getPractice['practice'], now()->addMinutes(60));
             $practice = Cache::get('practice-'.$id);
         }
 
@@ -39,10 +40,8 @@ class UserTheoryPracticeController extends Controller
     {
         $response = [];
         $message = 'finish !';
-
-        $practices = Cache::get('practice-'.$practice_id);
-
-        foreach (json_decode($practices->practice['questions']) as $index => $val){
+        $practices = Cache::get('theory-practice-'.$practice_id);
+        foreach (json_decode($practices['questions']) as $index => $val){
             if($question_index == $index){
                 if ($val->answer == $answer_index){
                     $response = [
@@ -58,7 +57,7 @@ class UserTheoryPracticeController extends Controller
             }
         }
 
-        if($question_index == count(get_object_vars(json_decode($practices->practice['questions'])))){
+        if($question_index == count(get_object_vars(json_decode($practices['questions'])))){
 
             //return array
             $user_history = Statistic::where('user_id', '=', Auth::id())->
@@ -66,7 +65,7 @@ class UserTheoryPracticeController extends Controller
             where('statistiable_type', '=', Theory::class)->first();
             //check array
             if (empty($user_history)){
-                DB::transaction(function () use ($practice_id){
+                DB::beginTransaction();
                     Statistic::create([
                         'statistiable_id' => $practice_id,
                         'statistiable_type' => Theory::class,
@@ -77,12 +76,12 @@ class UserTheoryPracticeController extends Controller
                         ['user_id' => Auth::user()->id],
                         [
                             'points' => DB::raw('points + 100'),
+                            'level' => DB::raw('level + 1'),
                             'updated_at' => date("Y-m-d H:i:s")
                         ]
                     );
-                });
-
-                $message = "Congratulations you earn 100 points !";
+                DB::commit();
+                $message = "Congratulations you earn 100 points ! And raised their level!";
             }
             $response['message'] = $message;
             $response['status'] = "finished";

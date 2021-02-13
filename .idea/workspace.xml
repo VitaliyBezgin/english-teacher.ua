@@ -2,37 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5d600f7-8521-41bb-ab82-d0b499cc5682" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/practice-check.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CRUD/PractiseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CRUD/PractiseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CRUD/TheoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CRUD/TheoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CRUD/Tools/TaskExploder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CRUD/Tools/TaskExploder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CRUD/WordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CRUD/WordController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserTheoryPracticeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserTheoryPracticeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserWordsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserWordsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoreTheoryRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoreTheoryRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Practice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Practice.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Theory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Theory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/english_teacher.sql" beforeDir="false" afterPath="$PROJECT_DIR$/english_teacher.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/practise-create.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/practise-create.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/word-check.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/word-check.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/practise-create.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/word-check.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/word-check.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/practice-check.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/practice-check.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/practice-check.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/practice-check.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/sass/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/main.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/components/admin/adminApp.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/admin/adminApp.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/admin/adminNav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/admin/adminNav.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/crud/practise/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/crud/practice/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/crud/theory/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/crud/theory/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/crud/theory/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/crud/theory/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/crud/words/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/crud/words/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/study_words.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/study_words.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/words/words-practise.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/words/words-practise.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/practice/theory_practice.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/practice/theory_practice.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -221,7 +205,9 @@
       <workItem from="1612860576193" duration="13176000" />
       <workItem from="1612950407067" duration="19349000" />
       <workItem from="1613047818333" duration="19085000" />
-      <workItem from="1613117133953" duration="31080000" />
+      <workItem from="1613117133953" duration="31639000" />
+      <workItem from="1613216978622" duration="8809000" />
+      <workItem from="1613251833796" duration="4121000" />
     </task>
     <servers />
   </component>

@@ -1,13 +1,32 @@
 import 'axios'
 
 window.onload = function (){
+    let exercises_box = $('.exercises-box'),
+        theory_body = $('.theory-body'),
+        start_practice = $('#start-practice');
+
+    start_practice.click(function (){
+        exercises_box.fadeIn()
+        theory_body.fadeOut()
+        if ($(this).data('type') === 'button'){
+            $(this).text('Try again')
+            $(this).removeClass('btn-dark')
+            $(this).addClass('btn-warning')
+            $(this).data('type', 'link')
+        }else{
+            window.location = window.location.href
+        }
+
+    })
+
+
  let practiceForms = $('.exercises-box form'),
      i = 0,
      buttonToggle = true;
-
     //show first form
     $(practiceForms[i]).fadeIn()
 
+    //checking practice answers
    $('form').submit(function (e){
         e.preventDefault()
 
@@ -31,14 +50,23 @@ window.onload = function (){
                     i++
 
                     $(practiceForms[i]).fadeIn()
-                },1500)
+                },2000)
 
-                if (server_response.status === 'true'){
+                if (server_response.status === 'true' || server_response.status === 'finished'){
                     $(practiceForms[i]).find($('.form-control')).parent().css('background', 'pink')
                     answer_index.parent().css('background', 'green')
                 }
-                if (server_response.status === 'wrong'){
-
+                if (server_response.status === 'wrong' || server_response.status === 'finished'){
+                    let inps = $(practiceForms[i]).find($('.form-control'));
+                    for(let f = 0; f < inps; f++){
+                        if ($(inps[f]).data('id') === server_response.origin){
+                            $(inps[f]).parent().css('background', 'green')
+                        }
+                        $(inps[f]).parent().css({
+                            'text-decoration':'line-through',
+                            'background':'pink'
+                        })
+                    }
                 }
                 if (server_response.status === 'finished'){
                     $('.message').text(server_response.message)

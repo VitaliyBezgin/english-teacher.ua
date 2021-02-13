@@ -100,7 +100,7 @@ class UserWordsController extends Controller
                                        where('statistiable_type', '=', Words::class)->first();
             //check array
             if (empty($user_history)){
-                DB::transaction(function () use ($words_list_id){
+                DB::beginTransaction();
                    Statistic::create([
                        'statistiable_id' => $words_list_id,
                        'statistiable_type' => Words::class,
@@ -114,7 +114,7 @@ class UserWordsController extends Controller
                             'updated_at' => date("Y-m-d H:i:s")
                         ]
                     );
-                });
+                DB::commit();
 
                 $message = "Congratulations you earn 25 points !";
             }

@@ -7,20 +7,20 @@
         <h1>Practise choose</h1>
     </x-slot>
     <div class="py-12">
+        <button type="button" id="start-practice" data-type="button" class="btn btn-dark">Start practising</button>
         <div class="elements w-50 m-auto theory-practice-main">
             <h1 class="display-3">{{$theoryPractise['theory_title']}}</h1>
             <hr>
             <h3 class="display-4 mb-3 mt-3">{{$theoryPractise['header'] ?? ''}}</h3>
-            <p>
-{{--               <b>{{$theoryPractise['theory_body']}}</b>--}}
+            <p class="theory-body">
+               <b>{{$theoryPractise['theory_body']}}</b>
             </p>
             <p class="bg-blue-50 mt-4">
                 created at : {{$theoryPractise['created_at'] }}
                 updated at : {{ $theoryPractise['updated_at']}}
             </p>
             <hr>
-            <button type="button" id="start-practice" class="btn btn-dark">Start practising</button>
-            <div id="practice_id" style="display: none">{{$theoryPractise['id']}}</div>
+            <div id="practice_id" style="display: none">{{$theoryPractise->practice['id']}}</div>
                 <div class="exercises-box">
                     @foreach(json_decode($theoryPractise->practice['questions']) as $index => $val)
                         <form data-question-index="{{$index}}">

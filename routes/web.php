@@ -5,11 +5,9 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserWordsController;
 use App\Http\Controllers\UserTheoryPracticeController;
 
-Route::get('/', [PageController::class, 'welcome']);
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
+Route::get('/', [PageController::class, 'welcome'])->name('home');
+Route::get('get-theories', [PageController::class, 'getTheory']);
 Route::get('words/all', [PageController::class, 'studyWords']);
 Route::middleware('auth')->group(function (){
     Route::get('profile', [PageController::class, 'profile']);
