@@ -1,7 +1,17 @@
 <x-admin.adminApp>
     <div class="container">
         @foreach ($theories as $theory)
-            <a href="{{url('/theory/practice/'.$theory->practice->id)}}">{{ $theory->theory_title }}</a>
+            <div class="theory">
+                <p>
+                    {{$theory->theory_title}}
+                    <br>
+                    @if(isset($theory->practice->id))
+                        <span>practice for {{$theory->theory_title}}</span>
+                        <a href="{{url('/theory/practice/'.$theory->practice->id)}}">{{ $theory->theory_title }}</a>
+                    @endif
+                </p>
+                <hr>
+            </div>
         @endforeach
     </div>
 

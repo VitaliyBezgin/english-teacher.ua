@@ -24,6 +24,25 @@
   display: none;
 }
 
+.best-students {
+  width: 150px;
+  position: fixed;
+  top: 17%;
+  right: 3%;
+  z-index: 100;
+}
+.best-students .item {
+  text-align: center;
+  text-align: -webkit-center;
+  height: 100px;
+}
+.best-students .item .student-img-box img {
+  border-radius: 50%;
+  width: 50px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 #start-practice {
   position: fixed;
   left: 1%;
@@ -55,6 +74,70 @@
     box-shadow: none;
   }
 }
+.fight img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+#opponent-form {
+  width: 800px;
+  margin: auto;
+}
+#opponent-form h1 {
+  text-align: center;
+  text-align: -webkit-center;
+  font-size: 40px;
+  font-weight: bold;
+  margin: 20px 0px;
+}
+#opponent-form .opponent-option {
+  height: 60px;
+  margin: 10px 0px;
+  border-radius: 10px;
+  padding: 20px 0px 0px 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#opponent-form .opponent-option:nth-child(odd) {
+  background-color: #4a5568;
+  color: #fff;
+}
+#opponent-form .opponent-option:nth-child(even) {
+  background-color: #e3dfdf;
+}
+#opponent-form .word-option {
+  height: 60px;
+  margin: 10px 0px;
+  border-radius: 10px;
+  padding: 20px 0px 0px 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#opponent-form .word-option:nth-child(odd) {
+  background-color: #5177ba;
+  color: #fff;
+}
+#opponent-form .word-option:nth-child(even) {
+  background-color: #55ec15;
+}
+
+.fighters {
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+}
+.fighters .person {
+  text-align: center;
+  text-align: -webkit-center;
+}
+.fighters .person img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 2px 1px #777;
+}
+
 .choose-way-box {
   width: 1200px;
   margin: 20px auto;
@@ -67,6 +150,7 @@
   font-weight: bold;
   font-size: 50px;
   text-align: center;
+  text-align: -webkit-center;
   margin: 30px 0px;
 }
 .choose-way-box .elements {

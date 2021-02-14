@@ -25,7 +25,7 @@ class LevelFactory extends Factory
         return [
             'user_id' => User::factory()->create(),
             'level' => rand(1,10),
-            'points' => rand(0, 10000)
+            'points' => rand(0, 1000)
         ];
     }
 }

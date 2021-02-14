@@ -9,9 +9,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\UserProgressWatcher;
 
 class UserWordsController extends Controller
 {
+    use UserProgressWatcher;
+
+
     public function wordsGetFile($id)
     {
         if (intval($id)){
@@ -64,15 +68,21 @@ class UserWordsController extends Controller
             'words_list_id' => 'required|integer'
         ]);
 
+
+        if (!Cache::get('words-'. $request->words_list_id, false)){
+            Cache::put('words-'. $request->words_list_id, Words::where('id', '=', $request->word_id)->first(), now()->addSeconds(60));
+        }
+
         $this->checkAnswer($request->answer, $request->word_id, $request->words_list_id);
     }
 
-    final private function checkAnswer(string $answer, int $word_id, int $words_list_id)
+    final private function checkAnswer(string $answer, int $word_id, int $words_list_id, string $functionality_type = 'lesson')
     {
         $response = [];
         $message = 'Finish !';
 
         $words = Cache::get('words-'.$words_list_id);
+
 
         foreach (json_decode($words['words']) as $index => $val){
             if ($index == $word_id){
@@ -92,33 +102,12 @@ class UserWordsController extends Controller
             }
         }
 
-        if($word_id == count(get_object_vars(json_decode($words['words'])))){
+        if($word_id == count(get_object_vars(json_decode($words['words']))) && $functionality_type == 'lesson'){
 
-            //return array
-            $user_history = Statistic::where('user_id', '=', Auth::id())->
-                                       where('statistiable_id', '=', $words_list_id)->
-                                       where('statistiable_type', '=', Words::class)->first();
-            //check array
-            if (empty($user_history)){
-                DB::beginTransaction();
-                   Statistic::create([
-                       'statistiable_id' => $words_list_id,
-                       'statistiable_type' => Words::class,
-                       'user_id' => Auth::id()
-                   ]);
+            //it try to increase user points of this words testing first time
+            $increasePoints = $this->increasePoints($words_list_id, Auth::id());
 
-                    DB::table('user_levels')->updateOrInsert(
-                        ['user_id' => Auth::user()->id],
-                        [
-                            'points' => DB::raw('points + 25'),
-                            'updated_at' => date("Y-m-d H:i:s")
-                        ]
-                    );
-                DB::commit();
-
-                $message = "Congratulations you earn 25 points !";
-            }
-            $response['message'] = $message;
+            $response['message'] = $increasePoints;
             $response['status'] = "finished";
         }
 

@@ -1,10 +1,25 @@
 <x-app-layout>
     <x-slot name="styles">
         @include('components.styles.bootstrap-4')
-        @include('components.styles.main')
     </x-slot>
     <x-slot name="header">
-        <h1>Words choose</h1>
+        <h1>Lets go</h1>
+
+        <div class="fighters">
+            @foreach($persons_info as $person)
+               <div class="person">
+                   @if(isset($person->image->image))
+                       <img src="{{asset('storage/avatars/'.$person->image->image)}}" alt="">
+                   @else
+                       <img src="{{asset('images/default.png')}}" alt="">
+                   @endif
+                   <span>{{$person->fname }} {{  $person->sname}}</span>
+                   <div>
+                       Level - {{$person->level->level}} / Points {{$person->level->points}}
+                   </div>
+               </div>
+            @endforeach
+        </div>
     </x-slot>
 
     <div class="py-12">
