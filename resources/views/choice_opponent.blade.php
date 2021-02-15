@@ -11,6 +11,12 @@
     </x-slot>
 
     <div>
+        @if(session('message'))
+            <p class="text-center alert alert-warning">
+                <b>{{session('message')}}</b>
+                <a href="{{url(session('url'))}}" class=" btn btn-info">Continue started battle</a>
+            </p>
+        @endif
         <form id="opponent-form">
             <div class="form-group">
                 <input type="hidden" class="striker_id" value="{{Auth::id()}}">

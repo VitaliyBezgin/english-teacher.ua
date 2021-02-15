@@ -3785,15 +3785,119 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/js/WordsChecker.js":
+/*!**************************************!*\
+  !*** ./resources/js/WordsChecker.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ WordsChecker)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var WordsChecker = /*#__PURE__*/function () {
+  function WordsChecker() {
+    var checkType = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'lesson';
+
+    _classCallCheck(this, WordsChecker);
+
+    this.checkType = checkType;
+  }
+
+  _createClass(WordsChecker, [{
+    key: "start",
+    value: function start() {
+      if (this.checkType === 'lesson') {
+        var wordForms = $('.word_form'),
+            i = 0,
+            word_list_id = $('#words_list_id').text(),
+            buttonToggle = true; //show first form
+
+        $(wordForms[i]).fadeIn();
+        $('form').submit(function (e) {
+          e.preventDefault();
+
+          if (buttonToggle === true) {
+            buttonToggle = false;
+            var word_id = $(this).find('input[name=word]').data('id'),
+                answer = $(this).find('input[name=word]').val();
+            axios.post("http://english-teacher.ua/check-words", {
+              answer: answer,
+              word_id: word_id,
+              words_list_id: word_list_id
+            }).then(function (response) {
+              var server_response = response.data;
+              console.log(server_response);
+
+              if (server_response.result === 'true') {
+                $(wordForms[i]).find('.result').text(server_response.icon);
+              }
+
+              if (server_response.result === 'wrong') {
+                $(wordForms[i]).find('.result').html(server_response.icon + " <span> " + server_response.origin + "</span>");
+              }
+
+              if (server_response.message !== undefined) {
+                $('.message').append("<p>" + server_response.message + "</p>");
+              }
+
+              if (server_response.status === 'finished') {
+                //show button for download words file
+                $('#getWordsFile').fadeIn();
+                $('.words-list').after("<button type='button' class='btn btn-outline-dark try_again'>Try again</button>");
+              }
+
+              setTimeout(function () {
+                $(wordForms[i]).remove();
+                i++;
+                buttonToggle = true;
+                $(wordForms[i]).fadeIn();
+              }, 1500);
+              $('.try_again').click(function () {
+                window.location = window.location.href;
+              });
+            })["catch"](function (error) {
+              console.log(error);
+            });
+          }
+        });
+      }
+    }
+  }]);
+
+  return WordsChecker;
+}();
+
+
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _lesson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lesson */ "./resources/js/lesson.js");
+
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
+
 
 $(function () {
   var best_students = $('.best-students');
@@ -3808,6 +3912,7 @@ $(function () {
     autoplay: true
   });
   opponentForm();
+  (0,_lesson__WEBPACK_IMPORTED_MODULE_0__.wordsLesson)();
 });
 /*
 * opponent form logic
@@ -3855,6 +3960,28 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/lesson.js":
+/*!********************************!*\
+  !*** ./resources/js/lesson.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "wordsLesson": () => (/* binding */ wordsLesson)
+/* harmony export */ });
+/* harmony import */ var _WordsChecker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WordsChecker */ "./resources/js/WordsChecker.js");
+
+
+var wordsLesson = function wordsLesson() {
+  return new _WordsChecker__WEBPACK_IMPORTED_MODULE_0__.default('lesson').start();
+};
+
+
 
 /***/ }),
 
@@ -21277,6 +21404,30 @@ process.umask = function() { return 0; };
 /******/ 	// It's empty as some runtime module handles the default behavior
 /******/ 	__webpack_require__.x = x => {};
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {

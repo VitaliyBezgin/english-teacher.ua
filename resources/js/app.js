@@ -1,6 +1,10 @@
+import {wordsLesson} from "./lesson";
+
 require('./bootstrap');
 
 require('alpinejs');
+
+import './lesson'
 
 $(function (){
     let best_students = $('.best-students')
@@ -17,6 +21,8 @@ $(function (){
     });
 
     opponentForm()
+
+   wordsLesson()
 })
 
 /*

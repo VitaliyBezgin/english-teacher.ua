@@ -100,11 +100,11 @@
   cursor: pointer;
 }
 #opponent-form .opponent-option:nth-child(odd) {
-  background-color: #4a5568;
+  background-color: #5177ba;
   color: #fff;
 }
 #opponent-form .opponent-option:nth-child(even) {
-  background-color: #e3dfdf;
+  background-color: #55ec15;
 }
 #opponent-form .word-option {
   height: 60px;

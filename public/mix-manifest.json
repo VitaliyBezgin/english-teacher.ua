@@ -1,7 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/practice-check.js": "/js/practice-check.js",
-    "/js/word-check.js": "/js/word-check.js",
+    "/js/battle.js": "/js/battle.js",
+    "/js/WordsChecker.js": "/js/WordsChecker.js",
     "/css/app.css": "/css/app.css",
     "/css/main.css": "/css/main.css"
 }
