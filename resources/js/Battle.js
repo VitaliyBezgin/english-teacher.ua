@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export default class Battle{
     constructor() {
     }
@@ -66,3 +67,12 @@ export default class Battle{
 }
 
 const battleObj = new Battle().startBattle()
+=======
+import WordsLesson from "./wordsLesson";
+
+const wordsBattle = function (){
+    return new WordsLesson('battle').start()
+}
+
+wordsBattle()
+>>>>>>> 6f37a21c108c9cfa9db4f4725476d69819e485d7
