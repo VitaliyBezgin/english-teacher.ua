@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class InvitationToBattle extends Notification
+class NotifyNewFriendNotification extends Notification
 {
     use Queueable;
 
@@ -16,11 +16,11 @@ class InvitationToBattle extends Notification
      *
      * @return void
      */
-    public $striker;
+    public $friend;
 
-    public function __construct($striker)
+    public function __construct($friend)
     {
-        $this->striker = $striker;
+        $this->friend = $friend;
     }
 
     /**
@@ -43,9 +43,10 @@ class InvitationToBattle extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line("Hi you were invited to battle by ".$this->striker->fname.' '.$this->striker->sname)
-                    ->action('My profile', url('http://english-teacher.ua/'))
-                    ->line('Thank you for using our application!');
+                    ->line('Hi, dear '.$this->friend->fname.' '.$this->friend->sname)
+                    ->line("<h2>You have a friend request !</h2>")
+                    ->action('Go to profile and check news !', url('http://english-teacher.ua/profile/'.$this->friend->id))
+                    ->line("With best regards, your <a href='http://english-teacher.ua'><b><i>english teacher</i></b></a>");
     }
 
     /**

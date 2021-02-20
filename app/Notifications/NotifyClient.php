@@ -18,6 +18,7 @@ class NotifyClient extends Notification
      * @return void
      */
     public $users, $theory;
+
     public function __construct($users, $theory)
     {
         $this->users = $users;

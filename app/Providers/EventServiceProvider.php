@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Events\AddNewFriendEvent;
 use App\Events\NewFightEvent;
 use App\Events\NewTheory;
 use App\Listeners\FightListener;
+use App\Listeners\FriendRequestListener;
 use App\Listeners\NewTheoryCreatedListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -27,6 +29,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         NewFightEvent::class => [
             FightListener::class
+        ],
+        AddNewFriendEvent::class => [
+            FriendRequestListener::class
         ]
     ];
 

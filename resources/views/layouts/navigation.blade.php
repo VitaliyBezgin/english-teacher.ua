@@ -5,8 +5,8 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('home') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                    <a href="{{ route('home') }}" class="btn btn-outline-dark">
+                       Main page
                     </a>
                 </div>
             </div>
@@ -22,14 +22,16 @@
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 @if(isset(Auth::user()->image->image))
                 <div class="user-avatar">
-                    <img src="{{asset('storage/avatars/'.Auth::user()->image->image)}}" style="width: 50px; height: 50px;" alt="">
+                    <a href="{{url('profile/'.Auth::id())}}" title="profile">
+                        <img src="{{asset('storage/avatars/'.Auth::user()->image->image)}}" style="width: 50px; height: 50px;" alt="">
+                    </a>
                 </div>
-                @endif
-                @if(isset(Auth::user()->level->level))
-                <div class="user-level-info">
-                    <div>level -  {{Auth::user()->level->level}}</div>
-                    <mark>points - {{Auth::user()->level->points}}</mark>
-                </div>
+                @elseif(Auth::check())
+                    <div class="user-avatar">
+                        <a href="{{url('profile/'.Auth::id())}}" title="profile">
+                            <img src="{{asset('images/default.png')}}" style="width: 50px; height: 50px;" alt="">
+                        </a>
+                    </div>
                 @endif
 
                 @if(Auth::check() == true)
@@ -46,9 +48,19 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        @if(isset(Auth::user()->level->level))
+                            <div class="user-level-info">
+                                <div><b>level -  {{Auth::user()->level->level}} </b></div>
+                                <div><b>points - {{Auth::user()->level->points}} </b></div>
+                            </div>
+                        @endif
+                        <div class="notifications">
+                            <img src="{{asset('images/notification-bell.png')}}" alt="">
+                        </div>
                         <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
+                        <form method="POST" action="{{ route('logout') }}" class="mt-4">
                             @csrf
+                            <hr>
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
@@ -102,7 +114,6 @@
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">

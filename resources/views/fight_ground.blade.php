@@ -43,6 +43,6 @@
 
     <x-slot name="scripts">
         @include('components.scripts.bootstrap-4')
-        <script src="{{asset('js/battle.js')}}"></script>
+        <script src="{{asset('js/Battle.js')}}"></script>
     </x-slot>
 </x-app-layout>

@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class NewTheory
+class AddNewFriendEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -19,12 +19,11 @@ class NewTheory
      *
      * @return void
      */
-    public $users, $theory;
+    public $friend_id;
 
-    public function __construct($users, $theory)
+    public function __construct($friend_id)
     {
-        $this->users = $users;
-        $this->theory = $theory;
+        $this->friend_id = $friend_id;
     }
 
     /**
@@ -34,6 +33,6 @@ class NewTheory
      */
     public function broadcastOn()
     {
-        return new Channel('home');
+        return new PrivateChannel('channel-name');
     }
 }

@@ -13,10 +13,19 @@ use App\Http\Controllers\UserProgressWatcher;
 
 class UserWordsController extends Controller
 {
-    use UserProgressWatcher;
+    use UserProgressWatcher, AnswersValidator;
 
+    public function wordsList()
+    {
+        $wordsList = Words::paginate(20);
 
-    public function wordsGetFile($id)
+        return view('words.words-list', ['wordsList' => $wordsList]);
+    }
+
+    /*
+     * Download tested words file by @id
+     * */
+    public function wordsGetFile(int $id)
     {
         if (intval($id)){
             try {
@@ -39,7 +48,10 @@ class UserWordsController extends Controller
         }
     }
 
-    public function wordsPractise($id)
+    /*
+     * Get words list for practising by @id
+     * */
+    public function wordsPractise(int $id)
     {
         if (Cache::get('words-'.$id, false) == false){
 
@@ -58,11 +70,11 @@ class UserWordsController extends Controller
     }
 
     /*
-     * Check words answer
+     * Handle and validate words list answers request
      * */
     public function answerHandle(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'answer' => 'required|string|min:1|max:255',
             'word_id' => 'required|integer',
             'words_list_id' => 'required|integer'
@@ -74,43 +86,5 @@ class UserWordsController extends Controller
         }
 
         $this->checkAnswer($request->answer, $request->word_id, $request->words_list_id);
-    }
-
-    final private function checkAnswer(string $answer, int $word_id, int $words_list_id, string $functionality_type = 'lesson')
-    {
-        $response = [];
-        $message = 'Finish !';
-
-        $words = Cache::get('words-'.$words_list_id);
-
-
-        foreach (json_decode($words['words']) as $index => $val){
-            if ($index == $word_id){
-                if(strcasecmp($val->origin, $answer) == 0){
-                    $response = [
-                        'result' => 'true',
-                        'icon' => '✅'
-                    ];
-                }else{
-                    $response = [
-                        'result' => 'wrong',
-                        'origin' => $val->origin,
-                        'icon' => '❌'
-                    ];
-                }
-                break;
-            }
-        }
-
-        if($word_id == count(get_object_vars(json_decode($words['words']))) && $functionality_type == 'lesson'){
-
-            //it try to increase user points of this words testing first time
-            $increasePoints = $this->increasePoints($words_list_id, Auth::id());
-
-            $response['message'] = $increasePoints;
-            $response['status'] = "finished";
-        }
-
-       echo json_encode($response);
     }
 }

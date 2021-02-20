@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\NewFightEvent;
+use App\Events\TestEvent;
 use App\Models\Fight;
 use App\Models\Theory;
 use App\Models\User;
@@ -47,33 +48,6 @@ class PageController extends Controller
         ]);
     }
 
-    public function opponentsFight(int $striker_id, int $defender_id, int $words_id)
-    {
-        try{
-
-            $persons_info = User::with(['image', 'level'])->whereIn('id', [$striker_id, $defender_id])->get();
-
-            if (Cache::get('words-'.$words_id == false) == false){
-                $words = Words::where('id', '=', $words_id)->first();
-                Cache::put('words-'.$words_id, $words, now()->addMinutes(60));
-            }
-
-            $words = Cache::get('words-'.$words_id);
-
-            event(new NewFightEvent($words_id, $striker_id, $defender_id));
-
-        }catch (Exception $e){
-            Log::info($e->getMessage());
-        }
-
-        $words = Cache::get('words-'.$words_id);
-
-        return view('fight_ground', [
-            'persons_info' => $persons_info,
-            'words' => $words
-            ]);
-    }
-
     public function choiceOpponent()
     {
         $id = Auth::id();
@@ -91,11 +65,6 @@ class PageController extends Controller
             'opponents' => $opponents,
             'words' => $words
             ]);
-    }
-
-    public function profile()
-    {
-        return view('profile.welcome');
     }
 
     public function studyWords()

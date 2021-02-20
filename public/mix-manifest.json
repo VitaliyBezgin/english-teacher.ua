@@ -1,8 +1,9 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/practice-check.js": "/js/practice-check.js",
-    "/js/battle.js": "/js/battle.js",
-    "/js/WordsChecker.js": "/js/WordsChecker.js",
+    "/js/Battle.js": "/js/Battle.js",
+    "/js/friendsList.js": "/js/friendsList.js",
+    "/js/wordsLesson.js": "/js/wordsLesson.js",
     "/css/app.css": "/css/app.css",
     "/css/main.css": "/css/main.css"
 }

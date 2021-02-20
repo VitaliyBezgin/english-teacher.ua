@@ -1,10 +1,8 @@
-import {wordsLesson} from "./lesson";
-
 require('./bootstrap');
 
 require('alpinejs');
 
-import './lesson'
+import Echo from 'laravel-echo';
 
 $(function (){
     let best_students = $('.best-students')
@@ -21,8 +19,6 @@ $(function (){
     });
 
     opponentForm()
-
-   wordsLesson()
 })
 
 /*

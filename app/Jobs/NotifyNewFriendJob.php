@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Events\NewTheory;
+use App\Events\AddNewFriendEvent;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -10,7 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class NotifyAfterNewTheory implements ShouldQueue
+class NotifyNewFriendJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -19,12 +19,11 @@ class NotifyAfterNewTheory implements ShouldQueue
      *
      * @return void
      */
-    public $users, $theory;
+    public $friend_id;
 
-    public function __construct($users, $theory)
+    public function __construct($id)
     {
-        $this->users = $users;
-        $this->theory = $theory;
+        $this->friend_id = $id;
     }
 
     /**
@@ -34,6 +33,6 @@ class NotifyAfterNewTheory implements ShouldQueue
      */
     public function handle()
     {
-        event(new NewTheory($this->users, $this->theory));
+        event(new AddNewFriendEvent($this->friend_id));
     }
 }

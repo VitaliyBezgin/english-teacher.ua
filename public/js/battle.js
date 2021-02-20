@@ -1836,7 +1836,7 @@ module.exports = {
 
 /***/ "./resources/js/WordsChecker.js":
 /*!**************************************!*\
-  !*** ./resources/js/WordsChecker.js ***!
+  !*** ./resources/js/WordsLesson.js ***!
   \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1922,6 +1922,8 @@ var WordsChecker = /*#__PURE__*/function () {
           }
         });
       }
+
+      if (this.checkType === 'battle') {}
     }
   }]);
 
@@ -1934,17 +1936,17 @@ var WordsChecker = /*#__PURE__*/function () {
 
 /***/ "./resources/js/battle.js":
 /*!********************************!*\
-  !*** ./resources/js/battle.js ***!
+  !*** ./resources/js/Battle.js ***!
   \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _WordsChecker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WordsChecker */ "./resources/js/WordsChecker.js");
+/* harmony import */ var _WordsChecker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WordsLesson */ "./resources/js/WordsChecker.js");
 
 
 var wordsBattle = function wordsBattle() {
-  return new _WordsChecker__WEBPACK_IMPORTED_MODULE_0__.default('lesson').start();
+  return new _WordsChecker__WEBPACK_IMPORTED_MODULE_0__.default('battle').start();
 };
 
 wordsBattle();
@@ -2149,7 +2151,7 @@ process.umask = function() { return 0; };
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -2162,14 +2164,14 @@ process.umask = function() { return 0; };
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -2182,7 +2184,7 @@ process.umask = function() { return 0; };
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -2194,12 +2196,12 @@ process.umask = function() { return 0; };
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -2210,7 +2212,7 @@ process.umask = function() { return 0; };
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	// startup
 /******/ 	// Load entry module

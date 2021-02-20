@@ -28,6 +28,6 @@
 
     <x-slot name="scripts">
         @include('components.scripts.bootstrap-4')
-        <script src="{{asset('js/WordsChecker.js')}}"></script>
+        <script src="{{asset('js/wordsLesson.js')}}"></script>
     </x-slot>
 </x-app-layout>

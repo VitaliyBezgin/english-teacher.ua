@@ -13,7 +13,7 @@ trait UserProgressWatcher
 {
     public function increasePoints(int $words_list_id, int $user_id, string $model_type = Words::class):string
     {
-        $message = 'finish';
+        $message = 'Already tested !';
 
         $user_history = Statistic::where('user_id', '=', $user_id)->
             where('statistiable_id', '=', $words_list_id)->

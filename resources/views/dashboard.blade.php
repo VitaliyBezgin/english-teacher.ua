@@ -19,7 +19,7 @@
                </a>
            </div>
            <div class="item words">
-               <a href="">
+               <a href="{{url('words-list')}}">
                    <img src="{{asset('images/Vocabluary-words-language-feat.jpg')}}" alt="">
                </a>
            </div>
